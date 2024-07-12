@@ -1,0 +1,33 @@
+
+.add-task-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 0.8em 1em;
+    border-radius: 0.7em;
+    border: none;
+    margin-bottom: 80px;
+    cursor: pointer;
+    transition: scale 0.3s ease;
+    min-width: max-content;
+}
+
+.add-task-btn img {
+    width: 1.5em;
+    aspect-ratio: 1; 
+}
+
+@media screen and (max-width: 950px) {
+    .add-task-btn {
+        margin-bottom: 0px;
+        padding: 1em 1.5em;
+        font-size: var(--size-8px);
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .add-task-btn {
+        gap: 10px;
+    }
+}

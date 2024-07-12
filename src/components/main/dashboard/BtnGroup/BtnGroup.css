@@ -1,0 +1,17 @@
+.btn-group-wrapper {
+    display: grid;
+    gap: 40px;
+}
+
+@media screen and (max-width: 950px) {
+    .btn-group-wrapper {
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .btn-group-wrapper {
+        gap: 16px;
+        grid-template-columns: 1fr 1fr;
+    }
+}

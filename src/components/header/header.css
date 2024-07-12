@@ -1,0 +1,49 @@
+.header-primary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 24px;
+    gap: 99px;
+    margin-bottom: 40px;
+}
+
+.logo {
+    align-self: flex-start;
+    min-width: max-content;
+}
+
+.panel-state {
+    margin-right: auto;
+}
+
+.signout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 1em 1.5em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition: scale 0.3s ease;
+    min-width: max-content;
+}
+
+.signout-btn img {
+    width: 1em;
+    aspect-ratio: 1;
+}
+
+@media screen and (max-width: 950px) {
+    .header-primary {
+        gap: 10px;
+    }
+    .panel-state {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .logo {
+        display: none;
+    }
+}

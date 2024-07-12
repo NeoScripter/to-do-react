@@ -1,0 +1,39 @@
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 56px;
+    margin-bottom: 24px;
+    font-size: var(--size-8px); 
+    font-weight: 400; 
+}
+
+.list-header h2 {
+    color: var(--text-color);
+    font-family: 'Lexend Bold';
+    font-size: var(--size-12px);
+    font-weight: 600;
+}
+
+.delete-all-btn {
+    color: var(--dark-orange);
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+@media screen and (max-width: 950px) {
+    .list-header {
+        gap: 0;
+    }
+    .delete-all-btn {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .list-header h2 {
+        display: none;
+    }
+}

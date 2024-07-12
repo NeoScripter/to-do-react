@@ -1,0 +1,101 @@
+@font-face {
+    font-family: "Lexend Bold";
+    src: url(../fonts/Lexend-Bold.woff2) format("woff2"), url(../fonts/Lexend-Bold.woff) format("woff");
+}
+
+@font-face {
+    font-family: "Lexend Medium";
+    src: url(../fonts/Lexend-Medium.woff) format("woff2"), url(../fonts/Lexend-Medium.woff) format("woff");
+}
+
+@font-face {
+    font-family: "Lexend Regular";
+    src: url(../fonts/Lexend-Regular.woff2) format("woff2"), url(../fonts/Lexend-Regular.woff) format("woff");
+}
+
+@font-face {
+    font-family: "Lexend Thin";
+    src: url(../fonts/Lexend-Thin.woff2) format("woff2"), url(../fonts/Lexend-Thin.woff) format("woff");
+}
+
+:root{
+    --dark-orange: hsl(23, 82%, 40%);
+    --light-orange: hsl(38, 82%, 60%);
+    --bg-color: hsl(0, 0%, 100%);
+    --text-color: hsl(14, 30%, 11%);
+
+    --size-8px: clamp(14px, 2.22vw, 21.09px);
+    --size-10px: clamp(10px, 2.78vw, 26.41px);
+    --size-12px: clamp(12px, 3.33vw, 31.64px);
+    --size-14px: clamp(14px, 3.89vw, 36.96px);
+    --size-16px: clamp(16px, 4.44vw, 42.18px);
+}
+
+body {
+    margin: 0;
+    font-family: "Lexend Regular", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    overflow-x: clip;
+    color: var(--text-color);
+}
+
+.wrapper {
+    width: min(calc(100% - 60px), 1440px);
+    margin-inline: auto;
+}
+
+/* Header */
+
+.logo {
+    font-size: var(--size-16px);
+    font-weight: 700; 
+    font-family: 'Lexend Bold';
+    color: var(--dark-orange);
+}
+
+.panel-state {
+    font-size: var(--size-10px);
+}
+
+.signout-btn {
+    color: #FFF;
+    background-color: var(--dark-orange);
+    font-size: var(--size-8px);
+    font-weight: 400; 
+    font-family: inherit;
+}
+
+.signout-btn:is(:hover, :focus-visible, :active) {
+    scale: 1.1;
+}
+
+.add-task-btn {
+    font-size: var(--size-10px);
+    font-weight: 400; 
+    color: inherit;
+    background-color: #FFF;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.10);
+}
+
+.add-task-btn:is(:hover, :focus-visible, :active) {
+    scale: 1.1;
+}
+
+.section-btn:is(:hover, :active, :focus-visible) {
+    background-color: hsl(38, 82%, 60%, 0.7);
+}
+
+.greeting {
+    color: #251814;
+    font-family: 'Lexend Bold';
+    font-size: var(--size-14px);
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+}
+
+.dashboard-top p {
+    font-size: var(--size-8px);
+}

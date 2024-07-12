@@ -1,0 +1,70 @@
+.btn-display {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+    color: #fff;
+    padding: 2em 1.6em;
+    border-radius: 12px; 
+}
+
+.btn-display__flex-subgroup {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+}
+
+.btn-display__flex-subgroup h3 {
+    color: inherit;
+    font-family: 'Lexend Medium';
+    font-weight: 700; 
+}
+
+.btn-display__flex-subgroup p {
+    font-weight: 400; 
+    width: max-content;
+}
+
+.btn-display-svg {
+    aspect-ratio: 1;
+    width: 2em;
+}
+
+.btn-display__flex-subgroup h3 {
+    font-size: 32px;
+}
+
+.btn-display__flex-subgroup p {
+    font-size: 16px;
+}
+
+
+
+@media screen and (max-width: 550px) {
+    .btn-display {
+        padding: 1em;
+        flex-direction: row;
+        gap: 0.5em;
+    }
+    .btn-display__flex-subgroup {
+        margin-inline: auto;
+    }
+    .btn-display-svg {
+        width: 1.8em;
+    }
+    .btn-display__flex-subgroup h3 {
+        font-size: var(--size-16px);
+    }
+    
+    .btn-display__flex-subgroup p {
+        font-size: var(--size-10px);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .btn-display-svg {
+        aspect-ratio: 1;
+        width: 1.5em;
+    }
+}
