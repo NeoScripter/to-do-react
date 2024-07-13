@@ -16,6 +16,10 @@
     width: 1em;
 }
 
+.section-btn.active-section {
+    background-color: var(--light-orange);
+}
+
 @media screen and (max-width: 950px) {
     .section-btn {
         padding: 0.8em 1.5em;

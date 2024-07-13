@@ -84,7 +84,7 @@ body {
 }
 
 .section-btn:is(:hover, :active, :focus-visible) {
-    background-color: hsl(38, 82%, 60%, 0.7);
+    background-color: hsl(38, 82%, 60%, 0.5);
 }
 
 .greeting {

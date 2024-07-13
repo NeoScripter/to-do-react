@@ -17,8 +17,13 @@ function SectionBtn(props) {
         };
     }, []);
 
+  const isCurrent = props.currentSection === props.sectionName ? true : false;
+  const extraClass = isCurrent ? " active-section" : "";
   return (
-    <button className="section-btn" onClick={props.toggle}>
+    <button className={"section-btn" + extraClass} onClick={() => {
+      props.toggle();
+      props.changeSection(props.sectionName);
+    }}>
       {props.sectionName}
       {(isMobile && props.img === true) && <img src={arrow} alt="arrow down" className="arrow-down-svg"/>}
     </button>

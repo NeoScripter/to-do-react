@@ -33,6 +33,7 @@
 @media screen and (max-width: 950px) {
     .dashboard-wrapper {
         align-self: center;
+        width: 100%;
     }
     
     .list__flex-group {
