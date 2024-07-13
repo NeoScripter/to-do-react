@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React/* , { useState, useEffect }  */from 'react';
 import './main.css';
 import Menu from './menu/menu';
 import Dashboard from './dashboard/Dashboard';
 
 function Main() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
+  /* const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
 
   useEffect(() => {
     const handleResize = () => {
@@ -16,11 +16,11 @@ function Main() {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, []); */
 
   return (
     <div className="main-wrapper">
-        {!isMobile && <Menu />}
+        <Menu />
         <Dashboard />
     </div>
   )

@@ -31,6 +31,10 @@
 }
 
 @media screen and (max-width: 950px) {
+    .dashboard-wrapper {
+        align-self: center;
+    }
+    
     .list__flex-group {
         gap: 30px;
     }

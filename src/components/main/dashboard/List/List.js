@@ -2,17 +2,16 @@ import React from 'react'
 import './List.css'
 import ListItem from './ListItem/ListItem'
 
-function List() {
+function List(props) {
   return (
     <div className='todo-list'>
+      {props.todos.map((todo) => (
         <ListItem 
-        done={false}
-        text="Buy monthly groceries" 
+        key={todo.id}
+        done={todo.done}
+        text={todo.text}
         />
-        <ListItem 
-        done={true}
-        text="Pick up the kids" 
-        />
+      ))}
     </div>
   )
 }

@@ -7,4 +7,19 @@
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow-down-svg {
+    width: 1em;
+}
+
+@media screen and (max-width: 950px) {
+    .section-btn {
+        padding: 0.8em 1.5em;
+        text-align: left;
+        justify-content: space-between;
+    }
 }

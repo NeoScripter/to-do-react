@@ -5,3 +5,12 @@
     gap: 32px;
     width: 318px;
 }
+
+@media screen and (max-width: 950px) {
+    .menu-wrapper {
+        width: 100%;
+        gap: 0;
+        border-radius: 0.5em;
+        overflow: clip;
+    }
+}
