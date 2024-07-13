@@ -1,6 +1,6 @@
-// frontend/src/Login.js
 import React, { useState } from 'react';
 import { login } from './api';
+import Reg from './Reg';
 
 function Login({ setLoggedIn, setUserId }) {
   const [username, setUsername] = useState('');
@@ -23,22 +23,14 @@ function Login({ setLoggedIn, setUserId }) {
   };
 
   return (
-    <form className="signup-wrapper" onSubmit={handleLogin}>
-      <h2>Login</h2>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Login</button>
-    </form>
+    <Reg 
+    username={username}
+    password={password}
+    handleAction={handleLogin}
+    setUsername={setUsername}
+    setPassword={setPassword}
+    actionName={"Log In"}
+    />
   );
 }
 

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { register } from "./api";
-import "./Register.css";
+import Reg from './Reg';
 
-function Register() {
+function Signup() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,23 +22,15 @@ function Register() {
   };
 
   return (
-    <form className="signup-wrapper" onSubmit={handleRegister}>
-      <h2>Register</h2>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Register</button>
-    </form>
+    <Reg 
+    username={username}
+    password={password}
+    handleAction={handleRegister}
+    setUsername={setUsername}
+    setPassword={setPassword}
+    actionName={"Sign Up"}
+    />
   );
 }
 
-export default Register;
+export default Signup;

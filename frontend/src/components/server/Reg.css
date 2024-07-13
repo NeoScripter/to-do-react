@@ -1,0 +1,119 @@
+.signup-wrapper {
+    position: fixed;
+    inset: 0;
+    color: black;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(bg-signup.png) #fff 50% / cover no-repeat;
+    background-position: center;
+}
+
+.reg-form {
+    width: min(calc(100% - 60px), 900px);
+    border-radius: 20px;
+    box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.10);
+    padding: calc(var(--size-16px) * 2.5) calc(var(--size-16px) * 2.5);
+}
+
+.signup-form {
+    background-color: var(--dark-orange);
+}
+
+.login-form {
+    background-color: #fff;
+}
+
+.reg-form h2 {
+    margin-bottom: 16px;
+    font-family: 'Lexend Bold';
+    font-size: 60px;
+    font-weight: 400; 
+    text-align: center;
+}
+
+.reg-form p {
+    font-size: 20px;
+    font-weight: 700; 
+    text-align: center;
+}
+
+.signup-form h2 {
+    color: #fff;
+}
+
+.login-form h2 {
+    color: var(--dark-orange);
+}
+
+.reg-form-subtitle {
+    margin-bottom: 80px;
+}
+
+.reg-form input {
+    font-size: 20px;
+    padding: 1.2em 1.5em;
+    border-radius: 12px;
+    background: #FFF;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.10);
+    display: block;
+    border: none;
+    margin-bottom: 40px;
+    margin-inline: auto;
+    width: 100%;
+}
+
+.reg-form button[type="submit"] {
+    font-size: 20px;
+    padding: 1.2em 2em;
+    border-radius: 12px;
+    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.10);
+    display: block;
+    margin-inline: auto;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 24px;
+}
+
+.login-form button[type="submit"] {
+    background-color: var(--light-orange);
+}
+
+.switch-reg {
+    border: none;
+    background-color: transparent;
+    color: var(--dark-orange);
+    cursor: pointer;
+    font-size: inherit;
+}
+
+@media screen and (max-width: 550px) {
+    .signup-wrapper {
+        align-items: flex-start;
+        padding-block: 30px;
+    }
+    .reg-form h2 {
+        margin-bottom: 8px;
+        font-size: 32px;
+    }
+    
+    .reg-form p {
+        font-size: 10px;
+    }
+    .reg-form-subtitle {
+        margin-bottom: 40px;
+    }
+    .reg-form button[type="submit"] {
+        font-size: 10px;
+        padding: 1.2em 2em;
+        margin-bottom: 10px;
+        border-radius: 6px;
+    }
+    .reg-form input {
+        font-size: 10px;
+        padding: 1.2em 1.5em;
+        margin-bottom: 12px;
+        border-radius: 6px;
+    }
+}

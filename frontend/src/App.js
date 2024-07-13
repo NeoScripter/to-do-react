@@ -1,8 +1,8 @@
 import Header from './components/header/header';
 import Main from './components/main/main';
-import Register from './Register';
+import Signup from './components/server/Signup';
 import React, { useState, useEffect } from 'react';
-import Login from './Login';
+import Login from './components/server/Login';
 /* import TaskList from './TaskList'; */
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
       ) : (
         <Login setLoggedIn={setLoggedIn} />
       )}
-      <Header />
+      <Header setLoggedIn={setLoggedIn} />
       <Main />
     </div>
   );
