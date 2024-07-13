@@ -8,17 +8,18 @@
     justify-content: center;
     background: url(bg-signup.png) #fff 50% / cover no-repeat;
     background-position: center;
+    padding-block: 30px;
 }
 
 .reg-form {
     width: min(calc(100% - 60px), 900px);
     border-radius: 20px;
     box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.10);
-    padding: calc(var(--size-16px) * 2.5) calc(var(--size-16px) * 2.5);
+    padding: calc(var(--size-16px) * 2) calc(var(--size-16px) * 2.5);
 }
 
 .signup-form {
-    background-color: var(--dark-orange);
+    background-color: var(--light-orange);
 }
 
 .login-form {
@@ -47,6 +48,14 @@
     color: var(--dark-orange);
 }
 
+.signup-form p {
+    color: #fff;
+}
+
+.login-form  {
+    color: #000;
+}
+
 .reg-form-subtitle {
     margin-bottom: 80px;
 }
@@ -62,6 +71,10 @@
     margin-bottom: 40px;
     margin-inline: auto;
     width: 100%;
+}
+
+.reg-form input:is(:hover, :focus-visible, :active) {
+    outline: 2px solid var(--dark-orange);
 }
 
 .reg-form button[type="submit"] {
@@ -80,18 +93,27 @@
     background-color: var(--light-orange);
 }
 
+.signup-form button[type="submit"] {
+    background-color: var(--dark-orange);
+    color: #fff;
+}
+
 .switch-reg {
     border: none;
     background-color: transparent;
     color: var(--dark-orange);
     cursor: pointer;
     font-size: inherit;
+    transition: opacity 0.3s ease;
+}
+
+.switch-reg:is(:hover, :focus-visible, :active) {
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 550px) {
     .signup-wrapper {
         align-items: flex-start;
-        padding-block: 30px;
     }
     .reg-form h2 {
         margin-bottom: 8px;

@@ -41,7 +41,7 @@ const createTables = () => {
       text VARCHAR(255) NOT NULL,
       description TEXT,
       done BOOLEAN DEFAULT FALSE,
-      creation_date DATETIME NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       completion_date DATETIME DEFAULT NULL,
       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
