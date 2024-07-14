@@ -3,7 +3,7 @@ import "./menu.css";
 import AddTask from "./add-task-btn/add-task";
 import SectionBtn from "./section-btn/SectionBtn";
 
-function Menu({ isMobile, currentSection, setCurrentSection }) {
+function Menu({ isMobile, currentSection, setCurrentSection, onTaskAdded }) {
     const [sectionNames, setSectionNames] = useState(["Dashboard", "Active", "Completed"]);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ function Menu({ isMobile, currentSection, setCurrentSection }) {
 
     return (
         <div className="menu-wrapper">
-            {!isMobile && <AddTask />}
+            {!isMobile && <AddTask onTaskAdded={onTaskAdded}/>}
             {sectionNames.map((sectionName, index) => (
                 <SectionBtn
                     key={`${sectionName}-${index}`}

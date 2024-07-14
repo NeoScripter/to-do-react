@@ -3,7 +3,7 @@ import "./add-task.css";
 import add from "./add.svg";
 import { addTask } from "../../../server/api";
 
-function AddTask() {
+function AddTask({ onTaskAdded }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [showPopup, setShowPopup] = useState(false);
@@ -16,6 +16,19 @@ function AddTask() {
 
     const AddToDo = async (e) => {
         e.preventDefault();
+        try {
+          const userId = sessionStorage.getItem('userId'); 
+          const response = await addTask(userId, title, description);
+          if (response.data.success) {
+            handleCancel();
+            onTaskAdded();
+          } else {
+            alert('Failed to add a new task');
+          }
+        } catch (error) {
+          console.error('There was an error adding a new task: ', error);
+          alert('There was an error adding a new task: ' + error.message);
+        }
     };
     
     return (

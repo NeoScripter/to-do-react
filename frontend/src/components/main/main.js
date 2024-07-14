@@ -6,6 +6,8 @@ import Dashboard from "./dashboard/Dashboard";
 function Main() {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
     const [currentSection, setCurrentSection] = useState("Dashboard");
+    const [refresh, setRefresh] = useState(false); 
+    const onTaskAdded=() => setRefresh(prev => !prev);
 
     useEffect(() => {
         const handleResize = () => {
@@ -25,8 +27,9 @@ function Main() {
                 isMobile={isMobile}
                 currentSection={currentSection}
                 setCurrentSection={setCurrentSection}
+                onTaskAdded={onTaskAdded}
             />
-            <Dashboard currentSection={currentSection} />
+            <Dashboard currentSection={currentSection} refresh={refresh}/>
         </div>
     );
 }

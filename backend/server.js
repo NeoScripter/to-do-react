@@ -100,7 +100,7 @@ app.get('/tasks/:userId', (req, res) => {
 
 app.post('/tasks/:userId', (req, res) => {
   const { userId } = req.params;
-  const { text, description } = req.body; 
+  const { text, description } = req.body;
 
   if (!text || !description) {
     return res.status(400).json({ success: false, error: 'Text and description are required.' });
@@ -111,7 +111,7 @@ app.post('/tasks/:userId', (req, res) => {
     if (err) {
       res.status(500).json({ success: false, error: err.message });
     } else {
-      res.json({ success: true, taskId: results.insertId }); 
+      res.json({ success: true, taskId: results.insertId });
     }
   });
 });

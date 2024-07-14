@@ -6,7 +6,7 @@ import List from "./List/List";
 import BtnGroup from "./BtnGroup/BtnGroup";
 import { fetchTasks } from "../../server/api";
 
-function Dashboard({ currentSection }) {
+function Dashboard({ currentSection, refresh }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 550);
   const [allTodos, setAllTodos] = useState([]);
   const [filteredTodos, setFilteredTodos] = useState([]);
@@ -42,7 +42,7 @@ function Dashboard({ currentSection }) {
     };
 
     getTasks();
-  }, [userId]);
+  }, [userId, refresh]);
 
   const filterTasks = useCallback((section) => {
     if (section === "Dashboard") {
