@@ -40,11 +40,8 @@
 .todo-list-item.finished .todo-list-item__details {
     background-color: var(--light-orange);
 }
-.todo-list-item .list-item-details {
-    display: none;
-}
 
-.todo-list-item:first-of-type .todo-list-item__details {
+.todo-list-item__details {
     display: block;
 }
 
@@ -60,6 +57,11 @@
     border: none;
     user-select: none;
     outline: none;
+    background-color: inherit;
+}
+
+.todo-list-item__details input:not([readonly]) {
+  outline: 2px dotted var(--dark-orange);
 }
 
 .todo-list-item__added-time {
@@ -84,6 +86,18 @@
     font-size: 20px;
     font-weight: 400; 
     margin-bottom: 73px;
+    width: 100%;
+    resize: none;
+    border: none;
+}
+
+.todo-list-item__details textarea {
+    outline: none;
+    background-color: inherit;
+}
+
+.todo-list-item__details textarea:not([readonly]) {
+  outline: 2px dotted var(--dark-orange);
 }
 
 .todo-list-item__controls-wrapper {

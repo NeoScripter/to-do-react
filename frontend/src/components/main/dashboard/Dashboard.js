@@ -6,7 +6,7 @@ import List from "./List/List";
 import BtnGroup from "./BtnGroup/BtnGroup";
 import { fetchTasks } from "../../server/api";
 
-function Dashboard({ currentSection, refresh }) {
+function Dashboard({ currentSection, refresh, onTaskAdded }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 550);
   const [allTodos, setAllTodos] = useState([]);
   const [filteredTodos, setFilteredTodos] = useState([]);
@@ -103,7 +103,7 @@ function Dashboard({ currentSection, refresh }) {
       )}
       <Header displayDeleteBtn={currentSection === "Dashboard" ? true : false} />
       <div className="list__flex-group">
-        <List todos={sortedTasks} currentSection={currentSection} />
+        <List todos={sortedTasks} currentSection={currentSection} onTaskAdded={onTaskAdded} />
         {!isMobile && currentSection === "Dashboard" && <BtnGroup counts={taskCounts} />}
       </div>
     </div>

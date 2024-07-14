@@ -18,7 +18,17 @@ export const addTask = (user_id, text, description) => {
   return axios.post(`${API_URL}/tasks/${user_id}`, { text, description });
 };
 
+export const deleteTask = (task_id) => {
+  return axios.post(`${API_URL}/delete`, { task_id });
+};
 
+export const completeTask = (task_id) => {
+  return axios.post(`${API_URL}/complete`, { task_id });
+};
+
+export const editTask = (title, description, task_id) => {
+  return axios.post(`${API_URL}/edit`, { title, description, task_id });
+};
 /*
 
 export const addTask = (user_id, text, description) => {

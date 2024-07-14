@@ -28,7 +28,7 @@ function Main({currentSection, setCurrentSection}) {
                 setCurrentSection={setCurrentSection}
                 onTaskAdded={onTaskAdded}
             />
-            <Dashboard currentSection={currentSection} refresh={refresh}/>
+            <Dashboard currentSection={currentSection} refresh={refresh} onTaskAdded={onTaskAdded}/>
         </div>
     );
 }

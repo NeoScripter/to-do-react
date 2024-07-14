@@ -1,6 +1,7 @@
 .btn-group-wrapper {
     display: grid;
     gap: 40px;
+    align-content: start;
 }
 
 @media screen and (max-width: 950px) {

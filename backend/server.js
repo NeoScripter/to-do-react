@@ -116,6 +116,41 @@ app.post('/tasks/:userId', (req, res) => {
   });
 });
 
+app.post('/delete', (req, res) => {
+  const { task_id } = req.body;
+  const query = 'DELETE FROM tasks WHERE id = ?';
+  db.query(query, [task_id], (err, results) => {
+    if (err) {
+      res.status(500).json({ success: false, error: err.message });
+    } else {
+      res.json({ success: true });
+    }
+  });
+});
+
+app.post('/complete', (req, res) => {
+  const { task_id } = req.body;
+  const query = 'UPDATE tasks SET done = TRUE WHERE id = ?;';
+  db.query(query, [task_id], (err, results) => {
+    if (err) {
+      res.status(500).json({ success: false, error: err.message });
+    } else {
+      res.json({ success: true });
+    }
+  });
+});
+
+app.post('/edit', (req, res) => {
+  const { task_id, title, description } = req.body;
+  const query = 'UPDATE tasks SET text = ? AND description = ? WHERE id = ?;';
+  db.query(query, [title, description, task_id], (err, results) => {
+    if (err) {
+      res.status(500).json({ success: false, error: err.message });
+    } else {
+      res.json({ success: true });
+    }
+  });
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
