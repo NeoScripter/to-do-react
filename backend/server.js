@@ -98,6 +98,25 @@ app.get('/tasks/:userId', (req, res) => {
   });
 });
 
+app.post('/tasks/:userId', (req, res) => {
+  const { userId } = req.params;
+  const { text, description } = req.body; 
+
+  if (!text || !description) {
+    return res.status(400).json({ success: false, error: 'Text and description are required.' });
+  }
+
+  const query = 'INSERT INTO tasks (user_id, text, description) VALUES (?, ?, ?)';
+  db.query(query, [userId, text, description], (err, results) => {
+    if (err) {
+      res.status(500).json({ success: false, error: err.message });
+    } else {
+      res.json({ success: true, taskId: results.insertId }); 
+    }
+  });
+});
+
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

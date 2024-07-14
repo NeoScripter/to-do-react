@@ -14,9 +14,12 @@ export const fetchTasks = (userId) => {
   return axios.get(`${API_URL}/tasks/${userId}`);
 };
 
-/* export const fetchTasks = (user_id) => {
-  return axios.post(API_URL + 'tasks.php', { action: 'fetch', user_id });
+export const addTask = (user_id, text, description) => {
+  return axios.post(`${API_URL}/tasks/${user_id}`, { text, description });
 };
+
+
+/*
 
 export const addTask = (user_id, text, description) => {
   return axios.post(API_URL + 'tasks.php', { action: 'add', user_id, text, description });
