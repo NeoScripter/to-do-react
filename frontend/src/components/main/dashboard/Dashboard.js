@@ -103,7 +103,7 @@ function Dashboard({ currentSection, refresh }) {
       )}
       <Header displayDeleteBtn={currentSection === "Dashboard" ? true : false} />
       <div className="list__flex-group">
-        <List todos={sortedTasks} />
+        <List todos={sortedTasks} currentSection={currentSection} />
         {!isMobile && currentSection === "Dashboard" && <BtnGroup counts={taskCounts} />}
       </div>
     </div>

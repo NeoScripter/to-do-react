@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Reg.css";
 
 function Reg({ username, password, handleAction, setUsername, setPassword, actionName, switchAction }) {

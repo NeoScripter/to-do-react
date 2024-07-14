@@ -11,6 +11,7 @@ function App() {
   const [isSignup, setIsSignup] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [currentSection, setCurrentSection] = useState("Dashboard");
 
   useEffect(() => {
     const userId = sessionStorage.getItem('userId');
@@ -61,8 +62,8 @@ function App() {
     <div className="wrapper">
       {loggedIn ? (
         <>
-          <Header setLoggedIn={setLoggedIn} />
-          <Main />
+          <Header setLoggedIn={setLoggedIn} currentSection={currentSection} />
+          <Main currentSection={currentSection} setCurrentSection={setCurrentSection} />
         </>
       ) : (
         <TransitionGroup>

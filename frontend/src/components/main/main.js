@@ -3,9 +3,8 @@ import "./main.css";
 import Menu from "./menu/menu";
 import Dashboard from "./dashboard/Dashboard";
 
-function Main() {
+function Main({currentSection, setCurrentSection}) {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
-    const [currentSection, setCurrentSection] = useState("Dashboard");
     const [refresh, setRefresh] = useState(false); 
     const onTaskAdded=() => setRefresh(prev => !prev);
 
