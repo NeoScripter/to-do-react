@@ -7,6 +7,16 @@
     background-color: #fff;
     box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.1);
     position: relative;
+    cursor: pointer;
+    transition: scale 0.3s ease;
+}
+
+.todo-list-item:has(.todo-list-item__details) {
+    transition: scale 0s;
+}
+
+.todo-list-item:is(:hover, :focus-visible):not(.todo-list-item:has(.todo-list-item__details)) {
+    scale: 1.02;
 }
 
 .todo-list-item__content {

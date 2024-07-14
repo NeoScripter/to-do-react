@@ -15,6 +15,7 @@ function ListItem(props) {
     const [itemDescription, setItemDescription] = useState(description);
 
     const formRef = useRef();
+    
     const onSetEdited = () => {
         if (isEdited) {
             handleTaskEditing();

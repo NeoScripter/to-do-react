@@ -18,10 +18,11 @@ function AddTask({ onTaskAdded }) {
         e.preventDefault();
         try {
           const userId = sessionStorage.getItem('userId'); 
-          const response = await addTask(userId, title, description);
+          const decs = description === "" ? ' ' : description;
+          const response = await addTask(userId, title, decs);
           if (response.data.success) {
-            handleCancel();
             onTaskAdded();
+            handleCancel();
           } else {
             alert('Failed to add a new task');
           }

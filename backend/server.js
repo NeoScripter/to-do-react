@@ -81,7 +81,7 @@ app.post('/login', (req, res) => {
     } else if (results.length > 0) {
       res.json({ success: true, userId: results[0].id });
     } else {
-      res.json({ success: false });
+      res.json({ success: false, error: 'Invalid username or password' });
     }
   });
 });
@@ -120,6 +120,22 @@ app.post('/delete', (req, res) => {
   const { task_id } = req.body;
   const query = 'DELETE FROM tasks WHERE id = ?';
   db.query(query, [task_id], (err, results) => {
+    if (err) {
+      res.status(500).json({ success: false, error: err.message });
+    } else {
+      res.json({ success: true });
+    }
+  });
+});
+
+app.post('/delete_all', (req, res) => {
+  const { userId } = req.body;
+  if (!userId) {
+    return res.status(400).json({ success: false, error: 'User ID is required' });
+  }
+
+  const query = 'DELETE FROM tasks WHERE user_id = ?';
+  db.query(query, [userId], (err, results) => {
     if (err) {
       res.status(500).json({ success: false, error: err.message });
     } else {

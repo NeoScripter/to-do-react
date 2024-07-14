@@ -3,10 +3,9 @@ import "./main.css";
 import Menu from "./menu/menu";
 import Dashboard from "./dashboard/Dashboard";
 
-function Main({currentSection, setCurrentSection}) {
+function Main({currentSection, setCurrentSection, refresh, onTaskAdded}) {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
-    const [refresh, setRefresh] = useState(false); 
-    const onTaskAdded=() => setRefresh(prev => !prev);
+
 
     useEffect(() => {
         const handleResize = () => {

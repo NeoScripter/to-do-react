@@ -12,6 +12,8 @@ function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [currentSection, setCurrentSection] = useState("Dashboard");
+  const [refresh, setRefresh] = useState(false); 
+  const onTaskAdded=() => setRefresh(prev => !prev);
 
   useEffect(() => {
     const userId = sessionStorage.getItem('userId');
@@ -43,7 +45,7 @@ function App() {
           sessionStorage.setItem('userId', response.data.userId);
           setLoggedIn(true);
         } else {
-          alert('Login failed');
+          alert('Invalid username or password!');
         }
       } catch (error) {
         console.error('Login error', error);
@@ -62,8 +64,8 @@ function App() {
     <div className="wrapper">
       {loggedIn ? (
         <>
-          <Header setLoggedIn={setLoggedIn} currentSection={currentSection} />
-          <Main currentSection={currentSection} setCurrentSection={setCurrentSection} />
+          <Header setLoggedIn={setLoggedIn} currentSection={currentSection} onTaskAdded={onTaskAdded}/>
+          <Main currentSection={currentSection} setCurrentSection={setCurrentSection} refresh={refresh} onTaskAdded={onTaskAdded}/>
         </>
       ) : (
         <TransitionGroup>

@@ -23,6 +23,68 @@
     margin-left: auto;
 }
 
+
+.delete-all-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgb(0,0,0,0.4);
+    backdrop-filter: blur(3px);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-all-popup {
+    width: min(calc(100% - 60px), 480px);
+    padding: 20px;
+    border-radius: 0.5em;
+    background: #FFF;
+    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.15);
+
+}
+
+.delete-all-warning {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Lexend Medium';
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+}
+
+.delete-all-btn-group {
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    width: min-content;
+}
+
+.delete-all-btn-group button {
+    font-size: 20px;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    border: 2px solid var(--light-orange);
+    transition: scale 0.3s ease;
+    text-align: center;
+    width: 100px;
+}
+
+.delete-all-btn-group button:is(:hover, :active, :focus-visible) {
+    scale: 1.1;
+}
+
+.delete-all-btn-group button[type="button"] {
+    background-color: var(--light-orange);
+}
+
+.delete-all-btn-group button[type="submit"] {
+    background-color: #fff;
+}
+
 @media screen and (max-width: 950px) {
     .list-header {
         gap: 0;
@@ -35,5 +97,15 @@
 @media screen and (max-width: 550px) {
     .list-header h2 {
         display: none;
+    }
+    .delete-all-btn {
+        gap: 10px;
+    }
+    .delete-all-popup {
+        padding: 20px;
+    }
+    
+    .delete-all-btn-group {
+        gap: 14px;
     }
 }

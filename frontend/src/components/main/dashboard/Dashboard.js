@@ -101,7 +101,7 @@ function Dashboard({ currentSection, refresh, onTaskAdded }) {
           {isMobile && <BtnGroup counts={taskCounts} />}
         </>
       )}
-      <Header displayDeleteBtn={currentSection === "Dashboard" ? true : false} />
+      <Header displayDeleteBtn={currentSection === "Dashboard" ? true : false} onTaskAdded={onTaskAdded} />
       <div className="list__flex-group">
         <List todos={sortedTasks} currentSection={currentSection} onTaskAdded={onTaskAdded} />
         {!isMobile && currentSection === "Dashboard" && <BtnGroup counts={taskCounts} />}
