@@ -2,19 +2,26 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 
 const app = express();
-const port = 5000;
+/* const port = 5000; */
+const port = process.env.PORT;
 
 app.use(cors());
 app.use(bodyParser.json());
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'todo_app'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
 });
+
+/* host: 'localhost',
+user: 'root',
+password: '',
+database: 'todo_app' */
 
 db.connect(err => {
   if (err) {
@@ -158,7 +165,7 @@ app.post('/complete', (req, res) => {
 
 app.post('/edit', (req, res) => {
   const { task_id, title, description } = req.body;
-  const query = 'UPDATE tasks SET text = ? AND description = ? WHERE id = ?;';
+  const query = 'UPDATE tasks SET text = ?, description = ? WHERE id = ?';
   db.query(query, [title, description, task_id], (err, results) => {
     if (err) {
       res.status(500).json({ success: false, error: err.message });

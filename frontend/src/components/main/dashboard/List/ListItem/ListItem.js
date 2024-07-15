@@ -56,7 +56,7 @@ function ListItem(props) {
 
       const handleTaskEditing = async () => {
         try {
-          const response = await editTask(id);
+          const response = await editTask(itemTitle, itemDescription, id);
           if (response.data.success) {
             onTaskAdded();
           } else {
