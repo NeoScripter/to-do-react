@@ -1,5 +1,5 @@
 const express = require('express');
-const { createClient } = require('@supabase/supabase-js');
+const { Pool } = require('pg');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
@@ -7,75 +7,80 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Update CORS configuration to allow requests from your frontend
-const allowedOrigins = ['https://to-do-react-backend.onrender.com', 'http://localhost:3000'];
-app.use(cors({
-  origin: function(origin, callback) {
-    // allow requests with no origin
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  }
-}));
+app.use(cors({ origin: '*' }));
 app.use(bodyParser.json());
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+const pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+});
+
+pool.connect(err => {
+  if (err) {
+    console.error('Database connection failed:', err.stack);
+    return;
+  }
+  console.log('Connected to database.');
+});
 
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
-  const { data, error } = await supabase.from('users').insert([{ username, password }]);
-  if (error) {
+  try {
+    const result = await pool.query('INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *', [username, password]);
+    res.json({ success: true, data: result.rows[0] });
+  } catch (error) {
     res.status(500).json({ success: false, error: error.message });
-  } else {
-    res.json({ success: true, data });
   }
 });
 
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
-  const { data, error } = await supabase.from('users').select('*').eq('username', username).eq('password', password);
-  if (error) {
+  try {
+    const result = await pool.query('SELECT id FROM users WHERE username = $1 AND password = $2', [username, password]);
+    if (result.rows.length > 0) {
+      res.json({ success: true, userId: result.rows[0].id });
+    } else {
+      res.json({ success: false, error: 'Invalid username or password' });
+    }
+  } catch (error) {
     res.status(500).json({ success: false, error: error.message });
-  } else if (data.length > 0) {
-    res.json({ success: true, userId: data[0].id });
-  } else {
-    res.json({ success: false, error: 'Invalid username or password' });
   }
 });
 
 app.get('/tasks/:userId', async (req, res) => {
   const { userId } = req.params;
-  const { data, error } = await supabase.from('tasks').select('*').eq('user_id', userId);
-  if (error) {
+  try {
+    const result = await pool.query('SELECT * FROM tasks WHERE user_id = $1', [userId]);
+    res.json({ success: true, tasks: result.rows });
+  } catch (error) {
     res.status(500).json({ success: false, error: error.message });
-  } else {
-    res.json({ success: true, tasks: data });
   }
 });
 
 app.post('/tasks/:userId', async (req, res) => {
   const { userId } = req.params;
   const { text, description } = req.body;
-  const { data, error } = await supabase.from('tasks').insert([{ user_id: userId, text, description }]);
-  if (error) {
+  if (!text || !description) {
+    return res.status(400).json({ success: false, error: 'Text and description are required.' });
+  }
+  try {
+    const result = await pool.query('INSERT INTO tasks (user_id, text, description) VALUES ($1, $2, $3) RETURNING *', [userId, text, description]);
+    res.json({ success: true, taskId: result.rows[0].id });
+  } catch (error) {
     res.status(500).json({ success: false, error: error.message });
-  } else {
-    res.json({ success: true, taskId: data[0].id });
   }
 });
 
 app.post('/delete', async (req, res) => {
   const { task_id } = req.body;
-  const { data, error } = await supabase.from('tasks').delete().eq('id', task_id);
-  if (error) {
+  try {
+    await pool.query('DELETE FROM tasks WHERE id = $1', [task_id]);
+    res.json({ success: true });
+  } catch (error) {
     res.status(500).json({ success: false, error: error.message });
-  } else {
-    res.json({ success: true, data });
   }
 });
 
@@ -84,31 +89,31 @@ app.post('/delete_all', async (req, res) => {
   if (!userId) {
     return res.status(400).json({ success: false, error: 'User ID is required' });
   }
-  const { data, error } = await supabase.from('tasks').delete().eq('user_id', userId);
-  if (error) {
+  try {
+    await pool.query('DELETE FROM tasks WHERE user_id = $1', [userId]);
+    res.json({ success: true });
+  } catch (error) {
     res.status(500).json({ success: false, error: error.message });
-  } else {
-    res.json({ success: true, data });
   }
 });
 
 app.post('/complete', async (req, res) => {
   const { task_id } = req.body;
-  const { data, error } = await supabase.from('tasks').update({ done: true }).eq('id', task_id);
-  if (error) {
+  try {
+    await pool.query('UPDATE tasks SET done = TRUE WHERE id = $1', [task_id]);
+    res.json({ success: true });
+  } catch (error) {
     res.status(500).json({ success: false, error: error.message });
-  } else {
-    res.json({ success: true, data });
   }
 });
 
 app.post('/edit', async (req, res) => {
   const { task_id, title, description } = req.body;
-  const { data, error } = await supabase.from('tasks').update({ text: title, description }).eq('id', task_id);
-  if (error) {
+  try {
+    await pool.query('UPDATE tasks SET text = $1, description = $2 WHERE id = $3', [title, description, task_id]);
+    res.json({ success: true });
+  } catch (error) {
     res.status(500).json({ success: false, error: error.message });
-  } else {
-    res.json({ success: true, data });
   }
 });
 
