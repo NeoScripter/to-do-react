@@ -1,27 +1,28 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+const { createClient } = require('@supabase/supabase-js');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const app = express();
 /* const port = 5000; */
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
 
-const db = mysql.createConnection({
+
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+const db = createClient(supabaseUrl, supabaseKey);
+
+/* const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-});
-
-/* host: 'localhost',
-user: 'root',
-password: '',
-database: 'todo_app' */
+}); */
 
 db.connect(err => {
   if (err) {
