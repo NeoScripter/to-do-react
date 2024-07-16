@@ -8,7 +8,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Update CORS configuration to allow requests from your frontend
-const allowedOrigins = ['https://to-do-react-frontend.onrender.com', 'http://localhost:3000'];
+const allowedOrigins = ['https://to-do-react-backend.onrender.com', 'http://localhost:3000'];
 app.use(cors({
   origin: function(origin, callback) {
     // allow requests with no origin
