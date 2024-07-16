@@ -31,7 +31,7 @@ function Dashboard({ currentSection, refresh, onTaskAdded }) {
         if (response.data.success) {
           const tasks = response.data.tasks.map(task => ({
             ...task,
-            done: task.done === 1
+            done: task.done === true
           }));
           setAllTodos(tasks);
           setFilteredTodos(tasks);
