@@ -7,7 +7,19 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+// Update CORS configuration to allow requests from your frontend
+const allowedOrigins = ['https://to-do-react-frontend.onrender.com', 'http://localhost:3000'];
+app.use(cors({
+  origin: function(origin, callback) {
+    // allow requests with no origin
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
 app.use(bodyParser.json());
 
 const supabaseUrl = process.env.SUPABASE_URL;
