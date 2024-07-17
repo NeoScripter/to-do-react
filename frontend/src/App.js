@@ -30,6 +30,8 @@ function App() {
         const response = await register(username, password);
         if (response.data.success) {
           alert('Signup success!');
+          sessionStorage.setItem('userId', response.data.userId);
+          setLoggedIn(true);
         } else {
           alert('Signup failed');
         }
